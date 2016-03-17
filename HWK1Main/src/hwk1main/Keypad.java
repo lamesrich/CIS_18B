@@ -14,35 +14,55 @@ import java.util.Scanner; // program uses Scanner to obtain user input
 public class Keypad
 {
    private Scanner input; // reads data from the command line
-   public int TF;
+   
                          
    // no-argument constructor initializes the Scanner
    public Keypad()
    {
       input = new Scanner( System.in );   
-      TF = -1;
+    
    } // end no-argument Keypad constructor
 
    // return an integer value entered by user 
    public int getInput()
    {
-       int userInput=0;
-       do 
-       {
-           
-            userInput=input.nextInt();
-           if (userInput < 0) 
-           {
-               System.out.println("Negative numbers are not allowed");
-           } 
-           else if(userInput >=0)
-           {
-               TF=-1; 
-                // we assume that user enters an integer
-           }
+       String userInput= input.next();  
+       boolean val=true;
+       int numInt=0;
+       //Input validation
+       do
+      {  
          
-           
-       } while (TF !=-1);
-      return userInput;
+        val=numeric(userInput);
+        
+        if(val==true)
+        {
+            numInt = Integer.parseInt(userInput);
+             
+        }
+        else
+        {
+            System.out.println("Please enter a positive number");
+            userInput= input.next();
+            
+        }
+      }while(!(val)); 
+      return numInt;
    } // end method getInput
+
+public static boolean numeric(String num)
+    {
+        boolean val = true;
+         if(num.matches("^[+]?\\d+(\\,/*\\d+)?$"))
+        {
+            val=true;
+        }
+        else
+        {
+            val=false;
+        }
+         
+        return val;
+    }
+
 } // end class Keypad  
