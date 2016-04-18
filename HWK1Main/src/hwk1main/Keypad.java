@@ -42,7 +42,7 @@ public class Keypad
         }
         else
         {
-            System.out.println("Please enter a positive number");
+            System.out.println("Please numerical positive integer");
             userInput= input.next();
             
         }
